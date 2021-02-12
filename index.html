@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width = device-width, initial-scale =
+    1.0, maximum-scale = 1.0, minimum-scale = 1.0, user-scalable = 0,
+    minimal-ui" />
+    <style type="text/css">
+        @font-face {
+            font-family: "Play";
+            src: url("https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap");
+        }
+        html {
+            background-color: rgb(41, 39, 39);
+        }
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        canvas {
+            display: block;
+            margin: 0;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .Title {
+            display:block;
+            margin: 40px;
+            font-style: Comic Sans MS, sans-serif;
+            color: rgb(185, 185, 185);
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+    <title>Donald's Burgers</title>
+</head>
+
+<body>
+    <header>
+    <h1 class="Title">Donald's Burgers</h1>
+    </header>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
+    <script src="./JavaScript/StartScene.js"></script>
+    <script src="./JavaScript/Rule_1Scene.js"></script>
+    <script src="./JavaScript/GameScene.js"></script>
+    <script src="./JavaScript/Rule_2Scene.js"></script>
+    <script src="./JavaScript/game.js"></script>
+</html>
