@@ -1,9 +1,15 @@
 let score = 0;
 const scoreMultiplier = 10;
 let speed = 1;
+let speed_2 = 10;
 
+let left = false;
+let right = false;
+let up = false;
+let down = false;
 let gameState = {
   numCoordinates: {},
+
 };
 let randomCoord;
 
@@ -33,12 +39,6 @@ class GameScene extends Phaser.Scene {
     gameState.player = this.physics.add.sprite(240, 500, 'trump-back')
      
 
-
-      
-    this.physics.world.setBounds(0, 0, 480, 600);
-
-    gameState.player.setCollideWorldBounds(true);
-    gameState.player.body.collideWorldBounds = true;
 
 
     randomCoord = assignCoords()
@@ -90,7 +90,6 @@ class GameScene extends Phaser.Scene {
     }
 
   update() {
-
     const cursors = this.input.keyboard.createCursorKeys();
 
     const rightArrow = cursors.right.isDown;
@@ -108,44 +107,67 @@ class GameScene extends Phaser.Scene {
       moveTrumpDown()
     }
 
-    const TrumpXCoord = gameState.player.x;
-    const TrumpYCoord = gameState.player.y;
-    if (TrumpXCoord >= 448 || TrumpXCoord <= 32) {
-      this.endGame();
+    // 480x too far 640y too far
+    if(gameState.player.x >= 480) {
+      gameState.player.x = 0
+    } else if (gameState.player.x <= 0) {
+      gameState.player.x = 480
+    } else if (gameState.player.y >= 640) {
+      gameState.player.y = 0
+    } else if (gameState.player.y <= 0) {
+      gameState.player.y = 640
     }
 
-    if (TrumpYCoord >= 568 || TrumpYCoord <= 32) {
-      this.endGame();
-    }
+    const TrumpXCoord = gameState.player.x;
+    const TrumpYCoord = gameState.player.y;
 
     function moveTrumpRight () {
       gameState.player.flipX = false;
       gameState.player.setTexture('trump-right');
-      gameState.player.setVelocityX(150) * speed;
-      gameState.player.setVelocityY(0) * speed;
+      right = true;
+      left = false;
+      up = false;
+      down = false;
     }
 
     function moveTrumpLeft () {
       // In the image, Bob looks to the right so we flip the image
       gameState.player.setTexture('trump-left');
-      gameState.player.setVelocityX(-150) * speed;
-      gameState.player.setVelocityY(0) * speed;
+      left = true;
+      right = false;
+      up = false
+      down = false
     }
 
     function moveTrumpUp () {
       gameState.player.flipX = false;
       gameState.player.setTexture('trump-front');
-      gameState.player.setVelocityX(0) * speed;
-      gameState.player.setVelocityY(-150) * speed;
+      up = true;
+      left = false;
+      right = false
+      down = false
     }
 
     function moveTrumpDown () {
       gameState.player.flipX = false;
       gameState.player.setTexture('trump-back');
-      gameState.player.setVelocityX(0) * speed;
-      gameState.player.setVelocityY(150) * speed;
+      down = true;
+      left = false;
+      up = false
+      right = false
     }
-
+    if(right) {
+      gameState.player.x += speed_2
+    }
+    if(left) {
+      gameState.player.x -= speed_2
+    }
+    if(up) {
+      gameState.player.y -= speed_2
+    }
+    if(down) {
+      gameState.player.y += speed_2
+    }
 
   }
 
@@ -154,11 +176,9 @@ class GameScene extends Phaser.Scene {
     this.physics.pause();
     // Transition to end scene w/fade
     this.cameras.main.fade(800, 0, 0, 0, false, function (camera, progress) {
-      if (progress > .5) {
         this.scene.stop('GameScene');
         this.scene.start('EndScene');
         score=0;
-      }
     });
   }
 }

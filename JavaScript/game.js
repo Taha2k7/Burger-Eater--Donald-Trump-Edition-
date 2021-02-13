@@ -8,7 +8,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: 0,
-            enableBody: true,
+            enableBody: true
         }
     },
 };
