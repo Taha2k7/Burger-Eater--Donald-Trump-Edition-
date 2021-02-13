@@ -19,7 +19,7 @@ class GameScene extends Phaser.Scene {
     this.load.image('trump-back', "./media/Donald_Trump_Sprite__Facing_Backward.png");
     this.load.image("trump-left", "./media/Donald_Trump_Sprite__Facing_Left.png");
     this.load.image("trump-right", "./media/Donald_Trump_Sprite__Facing_Right.png");
-    this.load.image("joe-biden", "./media/avatar_JoeBiden.png");
+    this.load.image("joe-biden", "./media/JoeBidenEnemy.png");
     this.load.image("burger", "./media/Burger_Sprite.png")
   }
 
@@ -47,7 +47,7 @@ class GameScene extends Phaser.Scene {
 
       gameState.burger.disableBody();
       delete gameState.numCoordinates[`x${gameState.burger.x}y${gameState.burger.y}`];
-      randomCoord = assignCoords
+      randomCoord = assignCoords();
 
       gameState.burger.enableBody(true, randomCoord.x, randomCoord.y);
 
@@ -55,11 +55,11 @@ class GameScene extends Phaser.Scene {
 
       scoreText.setText(`Score: ${score}`)
       randomCoord = assignCoords()
-      gameState.enemies.create(randomCoord.x, randomCoord.y, "joe-biden").setScale(.4)
+      gameState.enemies.create(randomCoord.x, randomCoord.y, "joe-biden").setScale(.3)
 
     });
 
-    this.physics.add.collider(gameState.player, gameState.enemies), () => this.endGame()
+    this.physics.add.collider(gameState.player, gameState.enemies, () => this.endGame())
 
     function generateRandomCoords() {
       const randomX = Math.floor(Math.random() * 5) * 75 + 25
@@ -122,7 +122,6 @@ class GameScene extends Phaser.Scene {
 
     function moveTrumpLeft () {
       // In the image, Bob looks to the right so we flip the image
-      gameState.player.flipX = true;
       gameState.player.setTexture('trump-left');
       gameState.player.setVelocityX(-150) * speed;
       gameState.player.setVelocityY(0) * speed;
@@ -152,7 +151,8 @@ class GameScene extends Phaser.Scene {
     this.cameras.main.fade(800, 0, 0, 0, false, function (camera, progress) {
       if (progress > .5) {
         this.scene.stop('GameScene');
-        this.scene.start('GameScene');
+        this.scene.start('EndScene');
+        score=0;
       }
     });
   }
