@@ -30,7 +30,7 @@ class GameScene extends Phaser.Scene {
       fill: '#fff'
     })
 
-    gameState.player = this.physics.add.sprite(240, 500, 'trump-back').setScale(.5)
+    gameState.player = this.physics.add.sprite(240, 500, 'trump-back')
      
 
 
