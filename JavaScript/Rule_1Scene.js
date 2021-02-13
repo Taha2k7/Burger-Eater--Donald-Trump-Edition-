@@ -10,8 +10,8 @@ class Rule_1Scene extends Phaser.Scene {
   }
 
   create() {
-    gameState.burger = this.add.image(175, 200, "burger").setOrigin(0);
-    gameState.burger.setScale(.5)
+    gameState.burgerStartScene = this.add.image(175, 200, "burger").setOrigin(0);
+    gameState.burgerStartScene.setScale(.5)
     this.add.text(125, 140, "Pretty Simple Really", {
       fontFamily: 'Trebuchet MS',
       fontSize: 30

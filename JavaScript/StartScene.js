@@ -10,9 +10,9 @@ class StartScene extends Phaser.Scene {
     }
 
     create() {
-        gameState.startSceneImage = this.add.image(175, 250, 'start').setOrigin(0);
+        gameState.startSceneImage = this.add.image(175, 180, 'start').setOrigin(0);
         gameState.startSceneImage.setScale(.5)
-        this.add.text(125, 240, 'I Can Has Cheezburgerz?', {
+        this.add.text(125, 170, 'I Can Has Cheezburgerz?', {
             fontFamily: 'Trebuchet MS', fontSize: 25
         });
         this.add.text(160, 525, 'Press a key to  continue', {
