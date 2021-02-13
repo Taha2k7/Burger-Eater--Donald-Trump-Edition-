@@ -31,7 +31,10 @@ class GameScene extends Phaser.Scene {
     })
 
     gameState.player = this.physics.add.sprite(240, 500, 'trump-back').setScale(.5)
-    // .1 .4
+     
+
+
+      
     this.physics.world.setBounds(0, 0, 480, 600);
 
     gameState.player.setCollideWorldBounds(true);
@@ -55,7 +58,9 @@ class GameScene extends Phaser.Scene {
 
       scoreText.setText(`Score: ${score}`)
       randomCoord = assignCoords()
-      gameState.enemies.create(randomCoord.x, randomCoord.y, "joe-biden").setScale(.3)
+      gameState.enemies.create(randomCoord.x, randomCoord.y, "joe-biden")
+
+
 
     });
 

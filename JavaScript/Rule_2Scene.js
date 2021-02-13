@@ -6,11 +6,11 @@ class Rule_2Scene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("joe-biden", "./media/avatar_JoeBiden.png")
+    this.load.image("joebidens_1", "./media/avatar_JoeBiden.png")
   }
 
   create() {
-    gameState.joe_biden_start = this.add.image(100, 200, "joe-biden").setOrigin(0);
+    gameState.joe_biden_start = this.add.image(100, 200, "joebidens_1").setOrigin(0);
     this.add.text(100, 140, "And Avoid the Joe Bidens", {
       fontFamily: 'Trebuchet MS', color: "#171717",
       fontSize: 30
